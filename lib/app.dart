@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:time_zone_test/presentation/routes/routes.dart';
 import 'package:time_zone_test/presentation/theme/app_theme.dart';
-import 'package:time_zone_test/presentation/views/screens/home_page.dart';
 
-class TimeZoneApp extends StatelessWidget {
+class TimeZoneApp extends StatefulWidget {
   const TimeZoneApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<TimeZoneApp> createState() => _TimeZoneAppState();
+}
+
+class _TimeZoneAppState extends State<TimeZoneApp> {
+  final _appRouter = AppRouter();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Time zone map',
       theme: AppTheme.theme,
-      routes: Routes.routes,
-      home: const HomePage(),
+      routerConfig: _appRouter.config(
+          // navigatorObservers: TODO: add navigatorObservers
+          ),
     );
   }
 }
-
-

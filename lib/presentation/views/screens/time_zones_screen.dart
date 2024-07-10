@@ -1,18 +1,18 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../../../data/data_sources/time_zone_data_source_impl.dart';
 import '../../../domain/entities/time_zone.dart';
 import '../../theme/app_theme.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  static const route = '/home';
+@RoutePage()
+class TimeZonesScreen extends StatefulWidget {
+  const TimeZonesScreen({super.key});
 
   @override
-  State<HomePage> createState() => _MyHomePageState();
+  State<TimeZonesScreen> createState() => _TimeZonesScreenState();
 }
 
-class _MyHomePageState extends State<HomePage> {
+class _TimeZonesScreenState extends State<TimeZonesScreen> {
   late Future<List<TimeZone>> timeZonesFuture;
 
   @override
@@ -24,9 +24,6 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Time Zones'),
-      ),
       body: FutureBuilder<List<TimeZone>>(
         future: timeZonesFuture,
         builder: (context, snapshot) {
