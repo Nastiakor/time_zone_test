@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:time_zone_test/presentation/theme/app_theme.dart';
 import 'package:time_zone_test/presentation/views/widgets/interactive_world_map.dart';
 import '../../../data/data_sources/time_zone_data_source_impl.dart';
 import '../../../domain/entities/time_zone.dart';
@@ -46,11 +47,11 @@ class _TimeZonesScreenState extends State<TimeZonesScreen> {
                       return ListTile(
                         title: Text(
                           timeZone.mainCity,
-                          style: Theme.of(context).textTheme.bodySmall,
+                          style: Theme.of(context).textTheme.bodyLargeRed(context),
                         ),
                         subtitle: Text(
                           '${timeZone.offset} (${timeZone.code})',
-                          style: Theme.of(context).textTheme.bodySmall,
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       );
                     },
