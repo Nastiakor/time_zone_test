@@ -7,8 +7,11 @@ class PreferencesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Time zones'),
+    return Center(
+      child: Text(
+        'Your preferences',
+        style: Theme.of(context).textTheme.bodySmall,
+      ),
     );
   }
 }

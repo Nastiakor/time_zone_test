@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../../../data/data_sources/time_zone_data_source_impl.dart';
 import '../../../domain/entities/time_zone.dart';
-import '../../theme/app_theme.dart';
 
 @RoutePage()
 class TimeZonesScreen extends StatefulWidget {
@@ -24,32 +23,41 @@ class _TimeZonesScreenState extends State<TimeZonesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List<TimeZone>>(
-        future: timeZonesFuture,
-        builder: (context, snapshot) {
-          print('Connection state: ${snapshot.connectionState}');
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            print('Error: ${snapshot.error}');
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No time zones available'));
-          } else {
-            final timeZones = snapshot.data!;
-            return ListView.builder(
-              itemCount: timeZones.length,
-              itemBuilder: (context, index) {
-                final timeZone = timeZones[index];
-                return ListTile(
-                  title: Text(timeZone.mainCity,
-                      style: AppTheme.textTheme.bodySmall),
-                  subtitle: Text('${timeZone.offset} (${timeZone.code})'),
-                );
+      body: Column(
+        children: [
+          Expanded(
+            child: FutureBuilder<List<TimeZone>>(
+              future: timeZonesFuture,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Center(child: Text('No time zones available'));
+                } else {
+                  final timeZones = snapshot.data!;
+                  return ListView.builder(
+                    itemCount: timeZones.length,
+                    itemBuilder: (context, index) {
+                      final timeZone = timeZones[index];
+                      return ListTile(
+                        title: Text(
+                          timeZone.mainCity,
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        subtitle: Text(
+                          '${timeZone.offset} (${timeZone.code})',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      );
+                    },
+                  );
+                }
               },
-            );
-          }
-        },
+            ),
+          ),
+        ],
       ),
     );
   }

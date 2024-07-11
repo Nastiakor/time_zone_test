@@ -6,11 +6,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
   static const List<BottomNavigationBarItem> defaultItems = [
     BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.time),
-      label: "Your time",
+      label: "Your clock",
     ),
     BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.airplane),
-      label: "Time zones",
+      label: "Time Zones",
     ),
     BottomNavigationBarItem(
       icon: Icon(CupertinoIcons.settings),
