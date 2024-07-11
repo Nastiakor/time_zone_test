@@ -17,7 +17,7 @@ class _TimeZoneAppState extends State<TimeZoneApp> {
     return MaterialApp.router(
       title: 'Time zone map',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkTheme,
+      theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       routerConfig: _appRouter.config(
