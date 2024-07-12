@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:time_zone_test/presentation/routes/routes.dart';
 import 'package:time_zone_test/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 
-import '../../theme/app_theme.dart';
-
 @RoutePage()
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

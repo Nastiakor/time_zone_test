@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:time_zone_test/presentation/blocs/theme/theme_cubit.dart';
 import 'package:time_zone_test/presentation/routes/routes.dart';
 import 'package:time_zone_test/presentation/theme/app_theme.dart';
 
@@ -14,15 +16,20 @@ class _TimeZoneAppState extends State<TimeZoneApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Time zone map',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      routerConfig: _appRouter.config(
-          // navigatorObservers: TODO: add navigatorObservers
-          ),
+    return BlocProvider(
+      create: (context) => ThemeCubit(),
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            title: 'Time zone map',
+            debugShowCheckedModeBanner: false,
+            theme: state.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
+            routerConfig: _appRouter.config(
+                // navigatorObservers: TODO: add navigatorObservers
+                ),
+          );
+        },
+      ),
     );
   }
 }
