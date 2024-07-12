@@ -1,0 +1,1 @@
+const isDarkThemeSelectedKey = 'dark_theme_selected';
