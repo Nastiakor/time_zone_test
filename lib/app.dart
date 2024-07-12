@@ -22,19 +22,29 @@ class _TimeZoneAppState extends State<TimeZoneApp> {
   Widget build(BuildContext context) {
     final settingsRepository =
         SettingsRepositoryImpl(preferences: widget.preferences);
-    return BlocProvider(
-      create: (context) => ThemeCubit(settingsRepository: settingsRepository),
-      child: BlocBuilder<ThemeCubit, ThemeState>(
-        builder: (context, state) {
-          return MaterialApp.router(
-            title: 'Time zone map',
-            debugShowCheckedModeBanner: false,
-            theme: state.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
-            routerConfig: _appRouter.config(
-                // navigatorObservers: TODO: add navigatorObservers
-                ),
-          );
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              ThemeCubit(settingsRepository: settingsRepository),
+        ),
+      ],
+      child: BlocListener<ThemeCubit, ThemeState>(
+        listener: (context, state) {
+          setState(() {});
         },
+        child: BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp.router(
+              title: 'Time zone map',
+              debugShowCheckedModeBanner: false,
+              theme: state.isDark ? AppTheme.darkTheme : AppTheme.lightTheme,
+              routerConfig: _appRouter.config(
+                  // navigatorObservers: TODO: add navigatorObservers
+                  ),
+            );
+          },
+        ),
       ),
     );
   }

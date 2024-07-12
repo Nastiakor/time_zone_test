@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../blocs/theme/theme_cubit.dart';
 
 class ThemeSwitch extends StatelessWidget {

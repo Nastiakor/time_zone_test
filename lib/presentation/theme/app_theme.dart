@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppTheme {
-  static const Color primaryColor = Colors.red;
   static const Color lightBackgroundColor = Colors.white;
   static const Color darkBackgroundColor = Colors.black;
+  static const Color lightAccentColor = Color(0xFFDD2D2D);
+  static const Color darkAccentColor = Color(0xFFFCBCBA);
+  static const Color greyColor = Color(0xFF515151);
 
   static TextStyle poppinsTextStyle({
     double? fontSize,
@@ -39,13 +41,13 @@ abstract class AppTheme {
   static final TextStyle bodyLargeRedStyleLight = poppinsTextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
-    color: const Color(0xFFDD2D2D),
+    color: lightAccentColor,
   );
 
   static final TextStyle bodyLargeRedStyleDark = poppinsTextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
-    color: const Color(0xFFFCBCBA),
+    color: darkAccentColor,
   );
 
   static final TextStyle bodyLargeBoldStyle = poppinsTextStyle(
@@ -76,12 +78,18 @@ abstract class AppTheme {
 
   static final ThemeData lightTheme = ThemeData(
     textTheme: lightTextTheme,
-    primaryColor: primaryColor,
     scaffoldBackgroundColor: lightBackgroundColor,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: primaryColor,
+    colorScheme: ColorScheme.fromSwatch(
       brightness: Brightness.light,
+    ).copyWith(
+      secondary: lightAccentColor,
     ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      selectedItemColor: lightAccentColor,
+      unselectedItemColor: greyColor,
+      backgroundColor: lightBackgroundColor,
+    ),
+    appBarTheme: const AppBarTheme(backgroundColor: lightBackgroundColor),
   );
 
   static final TextTheme darkTextTheme = TextTheme(
@@ -97,12 +105,18 @@ abstract class AppTheme {
 
   static final ThemeData darkTheme = ThemeData(
     textTheme: darkTextTheme,
-    primaryColor: primaryColor,
     scaffoldBackgroundColor: darkBackgroundColor,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: primaryColor,
+    colorScheme: ColorScheme.fromSwatch(
       brightness: Brightness.dark,
+    ).copyWith(
+      secondary: darkAccentColor,
     ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      selectedItemColor: darkAccentColor,
+      unselectedItemColor: greyColor,
+      backgroundColor: darkBackgroundColor,
+    ),
+    appBarTheme: const AppBarTheme(backgroundColor: darkBackgroundColor),
   );
 }
 
@@ -114,5 +128,12 @@ extension CustomTextStyles on TextTheme {
         : AppTheme.bodyLargeRedStyleLight;
   }
 
-  TextStyle get bodyLargeBold => AppTheme.bodyLargeBoldStyle;
+  TextStyle bodyLargeBold(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    return AppTheme.bodyLargeBoldStyle.copyWith(
+      color: brightness == Brightness.dark
+          ? Colors.white
+          : AppTheme.bodyLargeBoldStyle.color,
+    );
+  }
 }
