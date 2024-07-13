@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../theme/app_theme.dart';
 
 class InfoCard extends StatelessWidget {
@@ -16,16 +15,18 @@ class InfoCard extends StatelessWidget {
     final backgroundColor = brightness == Brightness.dark
         ? AppTheme.darkCardBackgroundColor
         : AppTheme.lightCardBackgroundColor;
-    return Card(
-      color: backgroundColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: child,
-      ),
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      return Card(
+        color: backgroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.0),
+        ),
+        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: child,
+        ),
+      );
+    });
   }
 }

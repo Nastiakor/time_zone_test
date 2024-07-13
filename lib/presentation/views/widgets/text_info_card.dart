@@ -7,8 +7,9 @@ class TextInfoCard extends StatelessWidget {
   final String? subtitle;
 
   const TextInfoCard({
-
-    super.key, required this.title, this.subtitle,
+    super.key,
+    required this.title,
+    this.subtitle,
   });
 
   @override
@@ -17,9 +18,21 @@ class TextInfoCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: Theme.of(context).textTheme.bodyLarge),
-          Text(subtitle ?? '',
-              style: Theme.of(context).textTheme.bodyLargeRed(context)),
+          Expanded(
+            child: Text(
+              title,
+              style: Theme.of(context).textTheme.bodyLarge,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          Expanded(
+            child: Text(
+              subtitle ?? '',
+              textAlign: TextAlign.right,
+              style: Theme.of(context).textTheme.bodyLargeRed(context),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ],
       ),
     );

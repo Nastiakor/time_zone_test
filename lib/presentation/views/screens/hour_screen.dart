@@ -44,7 +44,7 @@ class _HourScreenState extends State<HourScreen> {
       _getTimeZoneInfo(position.latitude, position.longitude);
     } catch (e) {
       setState(() {
-        _location = 'Location not available';
+        _location = 'Unknown';
       });
     }
   }
@@ -69,9 +69,9 @@ class _HourScreenState extends State<HourScreen> {
     final String formattedDate = _formatDate(now);
     return Scaffold(
       appBar: CustomAppBar(title: 'Mon fuseau horaire', subtitle: _location),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 32.0),
-        child: ListView(children: [
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(top: 16.0),
+        child: Column(children: [
           const ClockCard(),
           const SizedBox(height: 2),
           TimeZoneCard(

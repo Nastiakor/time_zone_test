@@ -19,7 +19,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
       appBar: const CustomAppBar(
           title: 'Mes préférences d’affichage', subtitle: 'Réglages'),
       body: Padding(
-        padding: const EdgeInsets.only(top: 32.0),
+        padding: const EdgeInsets.only(top: 16.0),
         child: ListView(
           children: const [
             ClockCard(),
