@@ -108,6 +108,17 @@ abstract class AppTheme {
       backgroundColor: Colors.white,
     ),
     appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: lightCardBackgroundColor,
+        backgroundColor: darkBackgroundColor,
+        padding: const EdgeInsets.all(16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        textStyle: bodyLargeBoldStyle,
+      ),
+    ),
     progressIndicatorTheme:
         const ProgressIndicatorThemeData(color: lightAccentColor),
     cupertinoOverrideTheme: const CupertinoThemeData(
@@ -143,6 +154,17 @@ abstract class AppTheme {
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Color(0xFF0E0E0E),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: darkCardBackgroundColor,
+        backgroundColor: lightBackgroundColor,
+        padding: const EdgeInsets.all(16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        textStyle: bodyLargeBoldStyle,
+      ),
     ),
     progressIndicatorTheme:
         const ProgressIndicatorThemeData(color: darkAccentColor),

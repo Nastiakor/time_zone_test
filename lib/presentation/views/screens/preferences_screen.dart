@@ -22,7 +22,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
         padding: const EdgeInsets.only(top: 16.0),
         child: ListView(
           children: const [
-            ClockCard(),
+            ClockCard(timeZoneCode: '', showSystemTime: true),
             SettingsCard(),
           ],
         ),

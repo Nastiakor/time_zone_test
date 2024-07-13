@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-
 import '../../blocs/time_format/time_format_cubit.dart';
+import '../../helpers/date_time_helper.dart';
 
 class RealTimeClock extends StatefulWidget {
   final TextStyle? timeStyle;
+  final String timeZoneCode;
+  final bool showSystemTime;
 
   const RealTimeClock({
     super.key,
     this.timeStyle,
+    required this.timeZoneCode,
+    required this.showSystemTime,
   });
 
   @override
@@ -45,8 +49,11 @@ class _RealTimeClockState extends State<RealTimeClock> {
               final dateFormat = timeFormatState.is24HourFormat
                   ? DateFormat('HH:mm:ss')
                   : DateFormat('hh:mm:ss a');
-              final formattedTime = dateFormat.format(time);
 
+              final displayTime = widget.showSystemTime
+                  ? time
+                  : convertToTimeZone(time, widget.timeZoneCode);
+              final formattedTime = dateFormat.format(displayTime);
               return Text(
                 formattedTime,
                 style: widget.timeStyle ?? DefaultTextStyle.of(context).style,

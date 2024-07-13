@@ -72,7 +72,7 @@ class _HourScreenState extends State<HourScreen> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 16.0),
         child: Column(children: [
-          const ClockCard(),
+          const ClockCard(timeZoneCode: '', showSystemTime: true),
           const SizedBox(height: 2),
           TimeZoneCard(
               title: 'Fuseau horaire',
