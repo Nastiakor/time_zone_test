@@ -17,13 +17,15 @@ class TimeZonesList extends StatelessWidget {
         stream: timeStream(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
+            final currentTime = snapshot.data ?? DateTime.now();
             return ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: timeZones.length,
                 itemBuilder: (context, index) {
                   final timeZone = timeZones[index];
-                  final offset = _extractOffset(timeZone.offset);
+                  final time = getTimeInTimeZone(currentTime, timeZone.offset);
+                  final date = getDateInTimeZone(currentTime, timeZone.offset);
                   return Builder(builder: (context) {
                     return ListTile(
                       title: Text(
@@ -41,13 +43,13 @@ class TimeZonesList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            getTimeInTimeZone(DateTime.now(), offset),
+                            time,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLargeBold(context),
                           ),
                           Text(
-                            'Friday · 12 July',
+                            date,
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ],
@@ -59,10 +61,5 @@ class TimeZonesList extends StatelessWidget {
             return const CircularProgressIndicator();
           }
         });
-  }
-
-  int _extractOffset(String offsetString) {
-    final cleanedOffset = offsetString.replaceAll(RegExp(r'[^\d-]'), '');
-    return int.parse(cleanedOffset);
   }
 }
