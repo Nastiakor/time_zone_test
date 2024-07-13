@@ -73,13 +73,13 @@ abstract class AppTheme {
   );
 
   static final TextStyle labelLargeBold = poppinsTextStyle(
-    fontSize: 60,
+    fontSize: 50,
     fontWeight: FontWeight.w700,
     color: const Color(0xFF151313),
   );
 
   static final TextStyle labelLarge = poppinsTextStyle(
-    fontSize: 60,
+    fontSize: 50,
     fontWeight: FontWeight.w300,
     color: const Color(0xFF151313),
   );

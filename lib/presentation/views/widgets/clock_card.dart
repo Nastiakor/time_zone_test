@@ -14,7 +14,7 @@ class ClockCard extends StatelessWidget {
       child: Center(
         child: RealTimeClock(
           hoursAndMinutesStyle: Theme.of(context).textTheme.labelLarge,
-          secondsStyle: Theme.of(context).textTheme.labelMedium,
+          secondsStyle: Theme.of(context).textTheme.labelLarge,
         ),
       ),
     );
