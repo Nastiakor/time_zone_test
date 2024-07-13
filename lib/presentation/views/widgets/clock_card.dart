@@ -12,10 +12,7 @@ class ClockCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InfoCard(
       child: Center(
-        child: RealTimeClock(
-          hoursAndMinutesStyle: Theme.of(context).textTheme.labelLarge,
-          secondsStyle: Theme.of(context).textTheme.labelLarge,
-        ),
+        child: RealTimeClock(timeStyle: Theme.of(context).textTheme.labelLarge),
       ),
     );
   }
