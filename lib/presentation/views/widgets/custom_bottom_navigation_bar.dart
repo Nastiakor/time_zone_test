@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:time_zone_test/presentation/theme/app_theme.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   static const List<BottomNavigationBarItem> defaultItems = [
@@ -37,8 +36,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
     final tabsRouter = AutoTabsRouter.of(context);
     return BottomNavigationBar(
       items: items,
-      selectedItemColor: Theme.of(context).colorScheme.secondary,
-      unselectedItemColor: AppTheme.greyColor,
       type: BottomNavigationBarType.fixed,
       elevation: 2,
       currentIndex: currentIndex,

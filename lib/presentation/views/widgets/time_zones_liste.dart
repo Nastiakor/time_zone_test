@@ -13,42 +13,52 @@ class TimeZonesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: timeZones.length,
-      itemBuilder: (context, index) {
-        final timeZone = timeZones[index];
-        final offset = _extractOffset(timeZone.offset);
-        return Builder(builder: (context) {
-          return ListTile(
-            title: Text(
-              timeZone.mainCity,
-              style: Theme.of(context).textTheme.bodyLargeRed(context),
-            ),
-            subtitle: Text(
-              '${timeZone.offset} (${timeZone.code})',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            trailing: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(
-                  getTimeInTimeZone(DateTime.now(), offset),
-                  style: Theme.of(context).textTheme.bodyLargeBold(context),
-                ),
-                Text(
-                  'Friday · 12 July',
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
-            ),
-          );
+    return StreamBuilder<DateTime>(
+        stream: timeStream(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            return ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: timeZones.length,
+                itemBuilder: (context, index) {
+                  final timeZone = timeZones[index];
+                  final offset = _extractOffset(timeZone.offset);
+                  return Builder(builder: (context) {
+                    return ListTile(
+                      title: Text(
+                        timeZone.mainCity,
+                        style:
+                            Theme.of(context).textTheme.bodyLargeRed(context),
+                      ),
+                      subtitle: Text(
+                        '${timeZone.offset} (${timeZone.code})',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                      trailing: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            getTimeInTimeZone(DateTime.now(), offset),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLargeBold(context),
+                          ),
+                          Text(
+                            'Friday · 12 July',
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ],
+                      ),
+                    );
+                  });
+                });
+          } else {
+            return const CircularProgressIndicator();
+          }
         });
-      },
-    );
   }
 
   int _extractOffset(String offsetString) {

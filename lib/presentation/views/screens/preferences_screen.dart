@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../blocs/theme/theme_cubit.dart';
-import '../widgets/theme_switch.dart';
+import 'package:flutter/material.dart';
+import 'package:time_zone_test/presentation/views/widgets/clock_card.dart';
+import 'package:time_zone_test/presentation/views/widgets/settings_card.dart';
+import '../widgets/custom_app_bar.dart';
 
 @RoutePage()
 class PreferencesScreen extends StatefulWidget {
@@ -15,9 +15,18 @@ class PreferencesScreen extends StatefulWidget {
 class _PreferencesScreenState extends State<PreferencesScreen> {
   @override
   Widget build(BuildContext context) {
-    final isDarkTheme = context.watch<ThemeCubit>().state.isDark;
-    return Center(
-      child: ThemeSwitch(isDarkTheme: isDarkTheme),
+    return Scaffold(
+      appBar: const CustomAppBar(
+          title: 'Mes préférences d’affichage', subtitle: 'Réglages'),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 32.0),
+        child: ListView(
+          children: const [
+            ClockCard(),
+            SettingsCard(),
+          ],
+        ),
+      ),
     );
   }
 }

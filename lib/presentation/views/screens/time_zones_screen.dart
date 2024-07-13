@@ -5,6 +5,7 @@ import 'package:time_zone_test/presentation/views/widgets/interactive_world_map.
 import '../../../data/data_sources/time_zone_data_source_impl.dart';
 import '../../../domain/entities/time_zone.dart';
 import '../../blocs/theme/theme_cubit.dart';
+import '../widgets/custom_app_bar.dart';
 import '../widgets/time_zones_liste.dart';
 
 @RoutePage()
@@ -29,6 +30,9 @@ class _TimeZonesScreenState extends State<TimeZonesScreen> {
     return BlocBuilder<ThemeCubit, ThemeState>(
       builder: (context, state) {
         return Scaffold(
+          appBar: const CustomAppBar(
+              title: 'Fuseaux horaires',
+              subtitle: 'Choisissez votre fuseau horaire'),
           body: SingleChildScrollView(
             child: Column(
               children: [

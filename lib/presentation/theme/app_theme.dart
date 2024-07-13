@@ -1,12 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 abstract class AppTheme {
-  static const Color lightBackgroundColor = Colors.white;
-  static const Color darkBackgroundColor = Colors.black;
+  static const Color lightBackgroundColor = Color(0xFFF3F2F8);
+  static const Color darkBackgroundColor = Color(0xFF151313);
   static const Color lightAccentColor = Color(0xFFDD2D2D);
   static const Color darkAccentColor = Color(0xFFFCBCBA);
-  static const Color greyColor = Color(0xFF515151);
+  static const Color greyColor = Color(0xFF8D8C8C);
+  static const Color darkGreyColor = Color(0xFF515151);
+  static const Color lightCardBackgroundColor = Colors.white;
+  static const Color darkCardBackgroundColor = Color(0xFF222020);
 
   static TextStyle poppinsTextStyle({
     double? fontSize,
@@ -68,12 +72,26 @@ abstract class AppTheme {
     color: const Color(0xFF151313),
   );
 
+  static final TextStyle labelLargeBold = poppinsTextStyle(
+    fontSize: 60,
+    fontWeight: FontWeight.w700,
+    color: const Color(0xFF151313),
+  );
+
+  static final TextStyle labelLarge = poppinsTextStyle(
+    fontSize: 60,
+    fontWeight: FontWeight.w300,
+    color: const Color(0xFF151313),
+  );
+
   static final TextTheme lightTextTheme = TextTheme(
     bodySmall: bodySmallStyle,
     bodyMedium: bodyMediumStyle,
     bodyLarge: bodyLargeStyle,
     titleSmall: titleSmallStyle,
     titleMedium: titleMediumStyle,
+    labelMedium: labelLarge,
+    labelLarge: labelLargeBold,
   );
 
   static final ThemeData lightTheme = ThemeData(
@@ -86,10 +104,15 @@ abstract class AppTheme {
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: lightAccentColor,
-      unselectedItemColor: greyColor,
-      backgroundColor: lightBackgroundColor,
+      unselectedItemColor: darkGreyColor,
+      backgroundColor: Colors.white,
     ),
-    appBarTheme: const AppBarTheme(backgroundColor: lightBackgroundColor),
+    appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+    progressIndicatorTheme:
+        const ProgressIndicatorThemeData(color: lightAccentColor),
+    cupertinoOverrideTheme: const CupertinoThemeData(
+      primaryColor: lightAccentColor,
+    ),
   );
 
   static final TextTheme darkTextTheme = TextTheme(
@@ -98,6 +121,8 @@ abstract class AppTheme {
     bodyLarge: bodyLargeStyle.copyWith(color: Colors.white),
     titleSmall: titleSmallStyle.copyWith(color: Colors.white),
     titleMedium: titleMediumStyle.copyWith(color: Colors.white),
+    labelMedium: labelLarge.copyWith(color: Colors.white),
+    labelLarge: labelLargeBold.copyWith(color: Colors.white),
   ).apply(
     displayColor: Colors.white,
     bodyColor: Colors.white,
@@ -114,9 +139,16 @@ abstract class AppTheme {
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       selectedItemColor: darkAccentColor,
       unselectedItemColor: greyColor,
-      backgroundColor: darkBackgroundColor,
+      backgroundColor: Color(0xFF0E0E0E),
     ),
-    appBarTheme: const AppBarTheme(backgroundColor: darkBackgroundColor),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Color(0xFF0E0E0E),
+    ),
+    progressIndicatorTheme:
+        const ProgressIndicatorThemeData(color: darkAccentColor),
+    cupertinoOverrideTheme: const CupertinoThemeData(
+      primaryColor: darkAccentColor,
+    ),
   );
 }
 

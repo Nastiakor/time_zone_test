@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class RealTimeClock extends StatefulWidget {
-  const RealTimeClock({super.key});
+  final TextStyle? hoursAndMinutesStyle;
+  final TextStyle? secondsStyle;
+
+  const RealTimeClock({
+    super.key,
+    this.hoursAndMinutesStyle,
+    this.secondsStyle,
+  });
 
   @override
   State<RealTimeClock> createState() => _RealTimeClockState();
@@ -28,14 +35,25 @@ class _RealTimeClockState extends State<RealTimeClock> {
     return StreamBuilder<DateTime>(
       stream: _timeStream,
       builder: (context, snapshot) {
+        final time = snapshot.data;
         if (snapshot.connectionState == ConnectionState.active) {
-          final time = snapshot.data;
+          final hoursAndMinutes =
+              "${time?.hour.toString().padLeft(2, '0')}:${time?.minute.toString().padLeft(2, '0')}";
+          final seconds = time?.second.toString().padLeft(2, '0');
           if (time != null) {
-            final formattedTime =
-                "${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')}";
-            return Text(
-              formattedTime,
-              style: Theme.of(context).textTheme.bodySmall,
+            return RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: hoursAndMinutes,
+                    style: widget.hoursAndMinutesStyle ?? DefaultTextStyle.of(context).style,
+                  ),
+                  TextSpan(
+                    text: ":$seconds",
+                    style: widget.secondsStyle ?? DefaultTextStyle.of(context).style,
+                  ),
+                ],
+              ),
             );
           }
         }

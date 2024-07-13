@@ -26,7 +26,8 @@ class InteractiveWorldMapState extends State<InteractiveWorldMap> {
             Positioned(
               left: _tapPosition!.dx,
               top: _tapPosition!.dy,
-              child: const Icon(Icons.location_on, color: Colors.red),
+              child: Icon(Icons.location_on,
+                  color: Theme.of(context).colorScheme.secondary),
             ),
         ],
       ),

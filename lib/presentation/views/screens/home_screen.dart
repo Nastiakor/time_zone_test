@@ -18,9 +18,6 @@ class HomeScreen extends StatelessWidget {
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
-          appBar: AppBar(
-            title: Text('Fuseaux horaires', style: Theme.of(context).textTheme.titleMedium),
-          ),
           body: child,
           bottomNavigationBar: CustomBottomNavigationBar(
             currentIndex: tabsRouter.activeIndex,
