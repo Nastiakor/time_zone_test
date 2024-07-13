@@ -24,8 +24,8 @@ class TimeZonesList extends StatelessWidget {
                 itemCount: timeZones.length,
                 itemBuilder: (context, index) {
                   final timeZone = timeZones[index];
-                  final time = getTimeInTimeZone(currentTime, timeZone.offset);
-                  final date = getDateInTimeZone(currentTime, timeZone.offset);
+                  final time = getTimeInTimeZone(currentTime, timeZone.offset, timeZone.isDST);
+                  final date = getDateInTimeZone(currentTime, timeZone.offset, timeZone.isDST);
                   return Builder(builder: (context) {
                     return ListTile(
                       title: Text(
