@@ -16,7 +16,8 @@ The Time Zone App is a Flutter application designed to display the current syste
 
 Clone the repository:
 
-git clone https://github.com/yourusername/time_zone_app.git
+git clone [https://github.com/yourusername/time_zone_app.git](https://github.com/Nastiakor/time_zone_test)
+
 cd time_zone_app
 
 Install dependencies:
