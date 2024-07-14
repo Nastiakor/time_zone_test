@@ -50,6 +50,7 @@ abstract class _$AppRouter extends RootStackRouter {
           time: args.time,
           date: args.date,
           showSystemTime: args.showSystemTime,
+          isDST: args.isDST,
         ),
       );
     },
@@ -128,6 +129,7 @@ class TimeZoneDetailsRoute extends PageRouteInfo<TimeZoneDetailsRouteArgs> {
     required String time,
     required String date,
     required bool showSystemTime,
+    required bool isDST,
     List<PageRouteInfo>? children,
   }) : super(
           TimeZoneDetailsRoute.name,
@@ -138,6 +140,7 @@ class TimeZoneDetailsRoute extends PageRouteInfo<TimeZoneDetailsRouteArgs> {
             time: time,
             date: date,
             showSystemTime: showSystemTime,
+            isDST: isDST,
           ),
           initialChildren: children,
         );
@@ -156,6 +159,7 @@ class TimeZoneDetailsRouteArgs {
     required this.time,
     required this.date,
     required this.showSystemTime,
+    required this.isDST,
   });
 
   final Key? key;
@@ -170,9 +174,11 @@ class TimeZoneDetailsRouteArgs {
 
   final bool showSystemTime;
 
+  final bool isDST;
+
   @override
   String toString() {
-    return 'TimeZoneDetailsRouteArgs{key: $key, city: $city, offset: $offset, time: $time, date: $date, showSystemTime: $showSystemTime}';
+    return 'TimeZoneDetailsRouteArgs{key: $key, city: $city, offset: $offset, time: $time, date: $date, showSystemTime: $showSystemTime, isDST: $isDST}';
   }
 }
 

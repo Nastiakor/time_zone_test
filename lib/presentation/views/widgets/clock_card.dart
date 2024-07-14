@@ -5,11 +5,13 @@ import 'info_card.dart';
 class ClockCard extends StatelessWidget {
   final String timeZoneCode;
   final bool showSystemTime;
+  final bool isDST;
 
   const ClockCard({
     super.key,
     required this.timeZoneCode,
     required this.showSystemTime,
+    required this.isDST,
   });
 
   @override
@@ -20,6 +22,7 @@ class ClockCard extends StatelessWidget {
           showSystemTime: showSystemTime,
           timeStyle: Theme.of(context).textTheme.labelLarge,
           timeZoneCode: timeZoneCode,
+          isDST: isDST,
         ),
       ),
     );

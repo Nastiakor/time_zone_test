@@ -15,6 +15,7 @@ class TimeZoneDetailsPage extends StatelessWidget {
   final String time;
   final String date;
   final bool showSystemTime;
+  final bool isDST;
 
   const TimeZoneDetailsPage({
     super.key,
@@ -23,6 +24,7 @@ class TimeZoneDetailsPage extends StatelessWidget {
     required this.time,
     required this.date,
     required this.showSystemTime,
+    required this.isDST,
   });
 
   @override
@@ -40,6 +42,7 @@ class TimeZoneDetailsPage extends StatelessWidget {
               ClockCard(
                 timeZoneCode: offset,
                 showSystemTime: false,
+                isDST: isDST,
               ),
               const SizedBox(height: 2),
               TimeZoneCard(
@@ -58,6 +61,7 @@ class TimeZoneDetailsPage extends StatelessWidget {
                     city: city,
                     offset: offset,
                     timeZoneCode: offset,
+                    isDST: isDST,
                   );
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Fuseau horaire sélectionné')),

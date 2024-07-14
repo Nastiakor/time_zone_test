@@ -8,12 +8,14 @@ class RealTimeClock extends StatefulWidget {
   final TextStyle? timeStyle;
   final String timeZoneCode;
   final bool showSystemTime;
+  final bool isDST;
 
   const RealTimeClock({
     super.key,
     this.timeStyle,
     required this.timeZoneCode,
     required this.showSystemTime,
+    required this.isDST,
   });
 
   @override
@@ -52,7 +54,7 @@ class _RealTimeClockState extends State<RealTimeClock> {
               try {
                 final displayTime = widget.showSystemTime
                     ? time
-                    : convertToTimeZone(time, widget.timeZoneCode);
+                    : convertToTimeZone(time, widget.timeZoneCode, widget.isDST);
                 final formattedTime = dateFormat.format(displayTime);
                 return Text(
                   formattedTime,

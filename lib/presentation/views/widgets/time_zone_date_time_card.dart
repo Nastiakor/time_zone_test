@@ -30,6 +30,7 @@ class TimeZoneDateTimeCard extends StatelessWidget {
             offset: '${timeZone.offset} (${timeZone.code})',
             time: time,
             date: date,
+            isDST: timeZone.isDST,
             showSystemTime: false,
           ),
         );

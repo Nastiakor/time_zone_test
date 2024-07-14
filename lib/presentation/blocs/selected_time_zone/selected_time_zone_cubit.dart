@@ -10,11 +10,13 @@ class SelectedTimeZoneCubit extends Cubit<SelectedTimeZoneState> {
     required String city,
     required String offset,
     required String timeZoneCode,
+    required bool isDST,
   }) {
     emit(SelectedTimeZoneState(
       city: city,
       offset: offset,
       timeZoneCode: timeZoneCode,
+      isDST: isDST,
     ));
   }
 }

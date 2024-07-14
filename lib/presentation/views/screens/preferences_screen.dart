@@ -29,6 +29,7 @@ class _PreferencesScreenState extends State<PreferencesScreen> {
                 return ClockCard(
                   timeZoneCode: state.timeZoneCode,
                   showSystemTime: state.timeZoneCode.isEmpty,
+                  isDST: state.isDST,
                 );
               },
             ),

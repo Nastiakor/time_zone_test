@@ -87,6 +87,7 @@ class _HourScreenState extends State<HourScreen> {
               return ClockCard(
                 timeZoneCode: state.timeZoneCode,
                 showSystemTime: state.timeZoneCode.isEmpty,
+                isDST: state.isDST,
               );
             },
           ),
