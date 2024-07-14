@@ -11,7 +11,6 @@ abstract class AppTheme {
   static const Color darkGreyColor = Color(0xFF515151);
   static const Color lightCardBackgroundColor = Colors.white;
   static const Color darkCardBackgroundColor = Color(0xFF222020);
-  static const Color lightSplashScreenBackgroundColor = Color(0xFFF3F2F8);
 
   static TextStyle poppinsTextStyle({
     double? fontSize,
