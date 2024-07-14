@@ -42,6 +42,10 @@ The app uses a BottomNavigationBar with three tabs:
 <p float="left"> 
 <img src="https://github.com/user-attachments/assets/cabded70-d8d2-445d-a386-9d550859b249" width="100" /> 
 <img src="https://github.com/user-attachments/assets/908d913c-c1f4-4ce8-ba8f-af91671c792a" width="100" /> 
+<img src="https://github.com/user-attachments/assets/1e09a977-71f0-462a-9410-5138dccee7b1" width="100" /> 
+<img src="https://github.com/user-attachments/assets/0330fe7f-22da-45e9-8ff3-698f9cb05ce1" width="100" /> 
+<img src="https://github.com/user-attachments/assets/4defb0ad-1622-4d7b-99c2-ea5018a8f00d" width="100" /> 
+
 </p>
 
 Your Clock: Displays the current system time.
