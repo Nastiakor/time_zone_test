@@ -1,4 +1,4 @@
-Time Zone App
+# Time Zone App
 
 Overview
 
@@ -16,8 +16,8 @@ Installation
 
 Clone the repository:
 
-git clone https://github.com/yourusername/time-zone-app.git
-cd time-zone-app
+git clone https://github.com/yourusername/time_zone_app.git
+cd time_zone_app
 
 Install dependencies:
 flutter pub get
@@ -27,6 +27,11 @@ flutter run
 
 Usage
 Splash Screen
+
+<p float="left"> 
+<img src="https://github.com/user-attachments/assets/1be802ef-ee23-4ada-8266-ec7e68770fd6" width="100" /> 
+<img src="https://github.com/user-attachments/assets/0b4991a3-496c-4bd2-ad56-68b82dfe86ef" width="100" /> 
+</p>
 
 Upon launching the app, users are greeted with a splash screen where they can choose their preferred display mode (light or dark).
 Navigation
