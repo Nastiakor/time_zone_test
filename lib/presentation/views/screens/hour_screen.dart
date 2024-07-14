@@ -46,7 +46,7 @@ class _HourScreenState extends State<HourScreen> {
       _getTimeZoneInfo(position.latitude, position.longitude);
     } catch (e) {
       setState(() {
-        _location = 'Unknown';
+        _location = 'Inconnue';
       });
     }
   }
@@ -94,14 +94,14 @@ class _HourScreenState extends State<HourScreen> {
           TimeZoneCard(
               title: 'Fuseau horaire',
               subtitleWidget: Text(
-                _timeZoneInfo ?? 'Loading...',
+                _timeZoneInfo ?? 'Inconnu',
                 style: Theme.of(context).textTheme.bodyLargeRed(context),
               ),
               imagePath: 'assets/images/world_map.svg'),
           const SizedBox(height: 2),
           TextInfoCard(title: 'Date complète', subtitle: formattedDate),
           const SizedBox(height: 2),
-          TextInfoCard(title: 'Ville la plus proche', subtitle: _location),
+          TextInfoCard(title: 'Ville la plus proche', subtitle: _location ?? 'Inconnue'),
         ]),
       ),
     );
