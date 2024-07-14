@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:time_zone_test/presentation/views/widgets/text_info_card.dart';
 import '../widgets/clock_card.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/time_zone_card.dart';
 
+@RoutePage()
 class TimeZoneDetailsPage extends StatelessWidget {
   final String city;
   final String offset;

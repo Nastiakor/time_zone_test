@@ -1,7 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../../../domain/entities/time_zone.dart';
+import '../../routes/routes.dart';
 import '../../theme/app_theme.dart';
-import '../screens/time_zone_details_page.dart';
 
 class TimeZoneDateTimeCard extends StatelessWidget {
   final TimeZone timeZone;
@@ -23,16 +24,13 @@ class TimeZoneDateTimeCard extends StatelessWidget {
         : AppTheme.lightCardBackgroundColor;
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => TimeZoneDetailsPage(
-              city: timeZone.mainCity,
-              offset: '${timeZone.offset} (${timeZone.code})',
-              time: time,
-              date: date,
-              showSystemTime: false,
-            ),
+        context.router.push(
+          TimeZoneDetailsRoute(
+            city: timeZone.mainCity,
+            offset: '${timeZone.offset} (${timeZone.code})',
+            time: time,
+            date: date,
+            showSystemTime: false,
           ),
         );
       },
