@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:intl/intl.dart';
 import 'package:time_zone_test/presentation/theme/app_theme.dart';
 import 'package:time_zone_test/presentation/views/widgets/clock_card.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -53,14 +52,14 @@ class _HourScreenState extends State<HourScreen> {
 
   Future<void> _getTimeZoneInfo(double latitude, double longitude) async {
     try {
-      final location = tz.getLocation(
-          'Europe/Paris');
+      final location = tz.getLocation('Europe/Paris');
       final now = tz.TZDateTime.now(location);
       final offset = now.timeZoneOffset.inHours;
       final offsetMinutes = now.timeZoneOffset.inMinutes.remainder(60);
 
       setState(() {
-        _timeZoneInfo = 'Heure d’été : UTC${offset >= 0 ? '+' : ''}$offset:${offsetMinutes.toString().padLeft(2, '0')}';
+        _timeZoneInfo =
+            'Heure d’été : UTC${offset >= 0 ? '+' : ''}$offset:${offsetMinutes.toString().padLeft(2, '0')}';
       });
     } catch (e) {
       setState(() {
@@ -69,16 +68,17 @@ class _HourScreenState extends State<HourScreen> {
     }
   }
 
-  String _formatDate(DateTime date) {
+ /* String _formatDate(DateTime date) {
     return DateFormat('EEEE, d MMMM yyyy').format(date);
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
-    final DateTime now = DateTime.now();
-    final String formattedDate = _formatDate(now);
+    // final DateTime now = DateTime.now();
+    // final String formattedDate = _formatDate(now);
     return Scaffold(
-      appBar: CustomAppBar(title: 'Mon fuseau horaire', subtitle: _location),
+      appBar: const CustomAppBar(
+          title: 'Mon horloge', subtitle: 'Mon fuseau horaire'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 16.0),
         child: Column(children: [
@@ -95,14 +95,15 @@ class _HourScreenState extends State<HourScreen> {
           TimeZoneCard(
               title: 'Fuseau horaire',
               subtitleWidget: Text(
-                _timeZoneInfo ?? 'Inconnu',
+                'Heure d’été : UTC +2:00',
                 style: Theme.of(context).textTheme.bodyLargeRed(context),
               ),
               imagePath: 'assets/images/world_map.svg'),
           const SizedBox(height: 2),
           // TextInfoCard(title: 'Date complète', subtitle: formattedDate),
           // const SizedBox(height: 2),
-          TextInfoCard(title: 'Ville la plus proche', subtitle: _location ?? 'Inconnue'),
+          const TextInfoCard(
+              title: 'Ville la plus proche', subtitle: 'Paris'),
         ]),
       ),
     );
