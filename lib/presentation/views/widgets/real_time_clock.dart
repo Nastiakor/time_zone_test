@@ -44,20 +44,26 @@ class _RealTimeClockState extends State<RealTimeClock> {
           stream: _timeStream,
           builder: (context, snapshot) {
             final time = snapshot.data;
-            if (snapshot.connectionState == ConnectionState.active &&
-                time != null) {
+            if (snapshot.connectionState == ConnectionState.active && time != null) {
               final dateFormat = timeFormatState.is24HourFormat
                   ? DateFormat('HH:mm:ss')
                   : DateFormat('hh:mm:ss a');
 
-              final displayTime = widget.showSystemTime
-                  ? time
-                  : convertToTimeZone(time, widget.timeZoneCode);
-              final formattedTime = dateFormat.format(displayTime);
-              return Text(
-                formattedTime,
-                style: widget.timeStyle ?? DefaultTextStyle.of(context).style,
-              );
+              try {
+                final displayTime = widget.showSystemTime
+                    ? time
+                    : convertToTimeZone(time, widget.timeZoneCode);
+                final formattedTime = dateFormat.format(displayTime);
+                return Text(
+                  formattedTime,
+                  style: widget.timeStyle ?? DefaultTextStyle.of(context).style,
+                );
+              } catch (e) {
+                return Text(
+                  'Invalid time zone format',
+                  style: widget.timeStyle ?? DefaultTextStyle.of(context).style,
+                );
+              }
             }
             return const CircularProgressIndicator();
           },

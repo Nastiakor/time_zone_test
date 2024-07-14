@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:time_zone_test/domain/repositories/settings_repository_impl.dart';
+import 'package:time_zone_test/presentation/blocs/selected_time_zone/selected_time_zone_cubit.dart';
 import 'package:time_zone_test/presentation/blocs/theme/theme_cubit.dart';
 import 'package:time_zone_test/presentation/blocs/time_format/time_format_cubit.dart';
 import 'package:time_zone_test/presentation/routes/routes.dart';
@@ -31,6 +32,9 @@ class _TimeZoneAppState extends State<TimeZoneApp> {
         ),
         BlocProvider(
           create: (context) => TimeFormatCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SelectedTimeZoneCubit(),
         ),
       ],
       child: BlocListener<ThemeCubit, ThemeState>(
