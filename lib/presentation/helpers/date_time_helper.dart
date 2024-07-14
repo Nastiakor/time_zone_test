@@ -35,6 +35,11 @@ Duration _parseOffset(String offset, bool isDST) {
 
 DateTime convertToTimeZone(DateTime time, String timeZoneOffset) {
   print('TimeZoneCode dans convertToTimeZone: $timeZoneOffset');
+
+  if (!timeZoneOffset.startsWith('UTC')) {
+    throw const FormatException('Invalid time zone format');
+  }
+
   final regex = RegExp(r'UTC([+-]\d{2}):(\d{2})');
   final match = regex.firstMatch(timeZoneOffset);
 
@@ -47,7 +52,6 @@ DateTime convertToTimeZone(DateTime time, String timeZoneOffset) {
 
   return time.toUtc().add(Duration(hours: hoursOffset, minutes: minutesOffset));
 }
-
 
 Stream<DateTime> timeStream() {
   return Stream.periodic(const Duration(seconds: 1), (_) {

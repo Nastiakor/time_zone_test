@@ -17,9 +17,10 @@ class ClockCard extends StatelessWidget {
     return InfoCard(
       child: Center(
         child: RealTimeClock(
-            showSystemTime: showSystemTime,
-            timeStyle: Theme.of(context).textTheme.labelLarge,
-            timeZoneCode: timeZoneCode),
+          showSystemTime: showSystemTime,
+          timeStyle: Theme.of(context).textTheme.labelLarge,
+          timeZoneCode: timeZoneCode,
+        ),
       ),
     );
   }

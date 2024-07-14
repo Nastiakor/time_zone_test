@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:time_zone_test/presentation/views/widgets/text_info_card.dart';
 import '../../blocs/selected_time_zone/selected_time_zone_cubit.dart';
 import '../widgets/clock_card.dart';
@@ -38,7 +39,7 @@ class TimeZoneDetailsPage extends StatelessWidget {
             children: [
               ClockCard(
                 timeZoneCode: offset,
-                showSystemTime: showSystemTime,
+                showSystemTime: false,
               ),
               const SizedBox(height: 2),
               TimeZoneCard(
@@ -47,15 +48,17 @@ class TimeZoneDetailsPage extends StatelessWidget {
                 imagePath: 'assets/images/world_map.svg',
               ),
               const SizedBox(height: 2),
-              TextInfoCard(title: 'Date complète', subtitle: date),
+              TextInfoCard(
+                  title: 'Date complète',
+                  subtitle: DateFormat('EEEE, d MMMM yyyy').format(DateTime.now())),
               const SizedBox(height: 64),
               ElevatedButton(
                 onPressed: () {
                   context.read<SelectedTimeZoneCubit>().setSelectedTimeZone(
-                        city: city,
-                        offset: offset,
-                        timeZoneCode: city,
-                      );
+                    city: city,
+                    offset: offset,
+                    timeZoneCode: offset,
+                  );
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Fuseau horaire sélectionné')),
                   );

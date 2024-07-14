@@ -1,5 +1,5 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:equatable/equatable.dart';
 
 part 'selected_time_zone_state.dart';
 
