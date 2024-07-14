@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_zone_test/presentation/views/widgets/text_info_card.dart';
+import '../../blocs/selected_time_zone/selected_time_zone_cubit.dart';
 import '../widgets/clock_card.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/time_zone_card.dart';
@@ -49,7 +51,15 @@ class TimeZoneDetailsPage extends StatelessWidget {
               const SizedBox(height: 64),
               ElevatedButton(
                 onPressed: () {
-                  // Action when the button is pressed
+                  context.read<SelectedTimeZoneCubit>().setSelectedTimeZone(
+                        city: city,
+                        offset: offset,
+                        timeZoneCode: city,
+                      );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Fuseau horaire sélectionné')),
+                  );
+                  context.router.maybePop();
                 },
                 child: const Text('Choisir ce fuseau horaire'),
               ),
